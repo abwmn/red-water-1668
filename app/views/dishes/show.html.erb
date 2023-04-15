@@ -1,12 +1,19 @@
 <h1><%= @dish.name %>
 <h3><%= @dish.description%>
 
-<h4>Ingredients</h2>
+<h4>Ingredients</h4>
 <ul class="ingredients">
   <% @dish.ingredients.each do |ing| %>
     <li><%= ing.name %></li>
   <% end %>
 </ul>
+
+<h4>Add Existing Ingredient</h4>
+<%= form_with url: dish_ingredients_path(@dish), method: :post, local: true, id: "add-ing-form" do |f| %>
+  <%= f.label :ingredient_id, "Ingredient ID" %>
+  <%= f.number_field :ingredient_id, step: 1, min: 1 %>
+  <%= f.submit "Submit" %>
+<% end %>
 
 <p>Total calories: <%= @dish.total_calories %></p>
 <p>Chef: <%= @dish.chef.name %>
