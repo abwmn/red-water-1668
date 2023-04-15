@@ -28,7 +28,6 @@ RSpec.describe "Dish show page", type: :feature do
 
   it 'adds an existing ingredient' do
     visit dish_path(@dish)
-    save_and_open_page
 
     expect(page).not_to have_content(@ingredient4.name)
 
@@ -36,7 +35,7 @@ RSpec.describe "Dish show page", type: :feature do
       fill_in "ingredient_id", with: @ingredient4.id
       click_button "Submit"
     end
-    save_and_open_page
+
     expect(current_path).to eq(dish_path(@dish))
     expect(page).to have_content(@ingredient4.name)
   end
