@@ -16,10 +16,8 @@ RSpec.describe "Chef show page" do
 
   it "links to ingredients index where I see a list of unique ingredients used by the chef" do
     visit chef_path(@chef)
-    save_and_open_page
 
-    click_link "View All Ingredients"
-    save_and_open_page
+    click_link "View All #{@chef.name}'s Ingredients"
 
     expect(current_path).to eq(chef_ingredients_path(@chef))
     expect(page).to have_content(@ingredient1.name)
